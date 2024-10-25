@@ -7,10 +7,8 @@ const wordList = [
   "syntax", "browser", "stylesheet", "document", "element"
 ];
 
-let currentWord;
-
-let winCount = 0; 
-let count = 0; 
+let currentWord, correctLetters, wrongGuessCount;
+const maxGuesses = 6;
 
 // This Function is used to get the random word from word list then initilizing the current word to word
 const getRandomWord = () => {
@@ -33,10 +31,20 @@ letterButtons.forEach(button => {
 
 const initGame = (letter) => {
     if (currentWord.includes(letter.toLowerCase())) {
-      console.log(letter, "exists in the word");
+        console.log(letter, "exists in the word");
+        // Loop through the current word and update the display for correct letters
+        [...currentWord].forEach((char, index) => {
+            if (letterButtons === char.toLowerCase()) {
+                correctLetters.push(letterButtons); // Add the correct letter to the array
+                // Update the displayed word
+                wordDisplay.querySelectorAll(".answer-section")[index].innerText = letterButtons; // Assuming you're using <span> to display letters
+                wordDisplay.querySelectorAll(".answer-section")[index].classList.add("guessed"); // Mark as guessed
+            }
+        });
     } else {
-      console.log(letter, "does not exist in the word");
+        console.log(letter, "does not exist in the word");
+        // You can add additional logic here for wrong guesses if needed
     }
-}
+};
 
 getRandomWord();

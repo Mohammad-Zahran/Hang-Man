@@ -1,1 +1,1 @@
-const hangContainer = document.getElementById("hang")
+const hangmanImage = document.getElementById("hang")

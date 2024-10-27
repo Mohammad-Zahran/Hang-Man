@@ -1,1 +1,0 @@
-const hangmanImage = document.getElementById("hang")
